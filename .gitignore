@@ -1,0 +1,16 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor settings
+.vscode/
+.idea/
+
+# Dependencies and builds (not used now, ready for later)
+node_modules/
+dist/
+
+# Secrets: never commit these
+.env
+.env.*
