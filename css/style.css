@@ -842,11 +842,30 @@ a { text-decoration-color: rgba(15, 164, 160, .55); }
   backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
 }
 
-/* Founder portraits */
-.person { grid-template-columns: 120px 1fr; }
-.person-photo { display: block; width: 120px; height: 120px; border-radius: 50%; overflow: hidden; padding: 4px; background: var(--grad); box-shadow: 0 12px 30px rgba(15, 75, 95, .15); }
-.person-photo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 40%; border: 3px solid #fff; }
+/* Founder cards: large round portrait over a light blue band */
+.team { grid-template-columns: repeat(2, 1fr); gap: 28px; align-items: stretch; }
+.person { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 0 32px; overflow: hidden; }
+.person::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 150px; z-index: 0;
+  background: linear-gradient(135deg, #CFE6FB 0%, #B7DBFA 50%, #CFEFEA 100%);
+}
+.person-photo {
+  position: relative; z-index: 1; display: block;
+  width: clamp(200px, 22vw, 260px); height: clamp(200px, 22vw, 260px);
+  margin-top: 36px; border-radius: 50%; overflow: hidden;
+  padding: 0; border: 10px solid #fff; background: #fff;
+  box-shadow: 0 20px 50px rgba(15, 75, 95, .16);
+}
+.person-photo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 0; transition: transform .8s var(--ease, ease); }
+.person:hover .person-photo img { transform: scale(1.04); }
+.person > div { position: relative; z-index: 1; padding: 22px clamp(20px, 3vw, 36px) 0; max-width: 56ch; }
+.person h3 { font-size: 1.375rem; margin-bottom: 4px; }
+.person .role { margin-bottom: 14px; }
+.person p:not(.role) { text-align: left; }
+@media (max-width: 900px) {
+  .team { grid-template-columns: 1fr; }
+}
 @media (max-width: 760px) {
-  .person { grid-template-columns: 1fr; }
-  .person-photo { width: 110px; height: 110px; }
+  .person::after { height: 120px; }
+  .person-photo { width: 200px; height: 200px; margin-top: 28px; border-width: 8px; }
 }
