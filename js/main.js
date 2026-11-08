@@ -26,7 +26,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // Sections fade up as they scroll into view; items in the same row are staggered
-const revealTargets = document.querySelectorAll(".section-head, .reason, .stop, .quote, .stage, .service, .fact, .inc-list li, .glossary div, .person, .side-card, .salary-photo, .table-card, .statement-text, .photo-band-text");
+const revealTargets = document.querySelectorAll(".section-head, .reason, .stop, .quote, .stage, .service, .fact, .inc-list li, .gl-item, .person, .side-card, .salary-photo, .table-card, .statement-text, .photo-band-text");
 if ("IntersectionObserver" in window && !reduceMotion) {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });

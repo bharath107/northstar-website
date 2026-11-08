@@ -8,15 +8,15 @@
 :root {
   --paper:   #F3F1EB;   /* page background */
   --white:   #FFFFFF;
-  --ink:     #15171C;   /* headings and main text */
-  --text:    #3B3F47;   /* body text */
+  --ink:     #0A1F4D;   /* Northstar navy, from the logo: headings and main text */
+  --text:    #3A4255;   /* body text */
   --muted:   #8C8A82;   /* faded serif words, captions */
   --line:    #DEDBD2;   /* borders */
-  --action:  #15171C;   /* main buttons: ink black */
+  --action:  #0A1F4D;   /* main buttons: Northstar navy */
   --accent:  #9A6A00;   /* deep gold for icons and small highlights (readable on paper) */
   --tint:    #F7EBCB;   /* soft gold background for selected answers */
-  --star:    #F5B731;   /* the north star, used sparingly */
-  --night:   #10131A;   /* dark sections */
+  --star:    #F8B800;   /* logo gold, used sparingly */
+  --night:   #071533;   /* dark navy sections */
 
   --sans:  "Archivo", system-ui, sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
@@ -107,7 +107,9 @@ p  { margin: 0 0 1em; max-width: 66ch; }
 }
 .site-header.scrolled { border-bottom-color: var(--line); }
 .nav-row { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 800 1.25rem var(--sans); color: var(--ink); letter-spacing: -.01em; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 800 1.1875rem var(--sans); color: var(--ink); letter-spacing: .04em; text-transform: uppercase; }
+.logo img { width: 44px; height: 44px; }
+.site-footer .logo img { width: 48px; height: 48px; }
 .logo-light { color: #fff; }
 .site-nav { display: flex; align-items: center; gap: 26px; }
 .site-nav a:not(.btn) { position: relative; color: var(--ink); text-decoration: none; font-weight: 500; font-size: .9875rem; padding: 6px 0; }
@@ -210,7 +212,7 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
 /* ---------- 12. Photo band ---------- */
 .photo-band { position: relative; min-height: clamp(380px, 60vw, 640px); display: flex; align-items: flex-end; overflow: hidden; background: var(--night); }
 .photo-band > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .82; }
-.photo-band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,19,26,0) 40%, rgba(16,19,26,.75)); }
+.photo-band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,21,51,0) 40%, rgba(7,21,51,.78)); }
 .photo-band-text { position: relative; z-index: 1; width: min(var(--max), 100% - 32px); margin: 0 auto; padding-bottom: clamp(32px, 6vw, 72px); }
 .photo-band .label { color: rgba(255,255,255,.75); }
 .photo-band-quote { font: 850 clamp(2.25rem, 6vw, 5.25rem)/.95 var(--sans); font-stretch: 80%; text-transform: uppercase; color: #fff; letter-spacing: -.03em; max-width: 16ch; margin: 0; }
@@ -257,10 +259,26 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
 .selfcheck-text { margin: 0; font-weight: 600; color: var(--ink); }
 .selfcheck-text a { margin-left: 4px; }
 
-.glossary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; margin: 0; }
-.glossary div { padding: 22px 0; border-top: 1px solid var(--line); }
-.glossary dt { font: 400 1.5rem var(--serif); color: var(--ink); margin-bottom: 6px; }
-.glossary dd { margin: 0; font-size: .9375rem; }
+.glossary { border-top: 2px solid var(--ink); }
+.gl-item { display: grid; grid-template-columns: minmax(200px, 1fr) 2.2fr; gap: 12px 48px; padding: 32px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 100px; }
+.gl-term { font: 400 clamp(1.75rem, 3vw, 2.5rem)/1.05 var(--serif); color: var(--ink); letter-spacing: -.01em; margin: 0; }
+.gl-abbr { display: inline-block; vertical-align: middle; margin-left: 6px; font: 700 .75rem var(--sans); letter-spacing: .08em; color: var(--ink); background: var(--tint); border-radius: 999px; padding: 4px 10px; }
+.gl-short { font-size: 1.0625rem; color: var(--ink); margin-bottom: 12px; }
+.gl-more summary {
+  list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: .9375rem; color: var(--ink); padding: 6px 0;
+  border-bottom: 2px solid var(--star);
+}
+.gl-more summary::-webkit-details-marker { display: none; }
+.gl-more summary::after { content: "+"; font: 400 1.25rem/1 var(--sans); transition: transform .25s var(--ease, ease); }
+.gl-more[open] summary::after { transform: rotate(45deg); }
+.gl-close, .gl-more[open] .gl-open { display: none; }
+.gl-more[open] .gl-close { display: inline; }
+.gl-detail { padding-top: 16px; animation: fade-up .45s var(--ease, ease); }
+.gl-detail p { font-size: 1rem; }
+.gl-parts { list-style: none; padding: 0; margin: 0 0 1em; display: grid; gap: 8px; }
+.gl-parts li { background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.gl-note { background: var(--tint); border-left: 4px solid var(--star); border-radius: 8px; padding: 12px 16px; color: var(--ink); }
 
 /* ---------- 16. About page ---------- */
 .pill-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
@@ -365,7 +383,7 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
   position: fixed; right: 24px; bottom: 24px; z-index: 50;
   width: 58px; height: 58px; border-radius: 50%;
   background: #1FA855; color: #fff; display: grid; place-items: center;
-  box-shadow: 0 8px 24px rgba(16, 19, 26, .25);
+  box-shadow: 0 8px 24px rgba(7, 21, 51, .25);
   transition: transform .15s;
 }
 .wa-float:hover { transform: scale(1.06); }
@@ -385,7 +403,6 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
   .reasons { grid-template-columns: 1fr 1fr; }
   .reason:nth-child(3) { padding-left: 0; border-left: 0; }
   .reason:nth-child(n+3) { border-top: 1px solid var(--line); }
-  .glossary { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 900px) {
@@ -444,7 +461,8 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
   .facts-grid { grid-template-columns: 1fr; }
   .fact, .fact + .fact { padding: 24px 0; border-left: 0; }
   .fact + .fact { border-top: 1px solid var(--line); }
-  .reasons, .services, .glossary, .inc-list { grid-template-columns: 1fr; }
+  .reasons, .services, .inc-list { grid-template-columns: 1fr; }
+  .gl-item { grid-template-columns: 1fr; padding: 24px 0; }
   .reason, .reason + .reason { padding: 24px 0 8px; border-left: 0; }
   .reason + .reason { border-top: 1px solid var(--line); }
   .field-row { grid-template-columns: 1fr; }
