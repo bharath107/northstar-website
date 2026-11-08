@@ -6,17 +6,19 @@
 
 /* ---------- 1. Design tokens: change colours and fonts here ---------- */
 :root {
-  --paper:   #F3F1EB;   /* page background */
+  --paper:   #FCFBF8;   /* page background: soft off white */
   --white:   #FFFFFF;
-  --ink:     #0A1F4D;   /* Northstar navy, from the logo: headings and main text */
-  --text:    #3A4255;   /* body text */
-  --muted:   #8C8A82;   /* faded serif words, captions */
-  --line:    #DEDBD2;   /* borders */
-  --action:  #0A1F4D;   /* main buttons: Northstar navy */
+  --ink:     #1D3566;   /* softer Northstar navy: headings and main text */
+  --text:    #4A5368;   /* body text */
+  --muted:   #8E929C;   /* faded serif words, captions */
+  --line:    #E4E7EE;   /* borders */
+  --action:  #1D3566;   /* main buttons: Northstar navy */
   --accent:  #9A6A00;   /* deep gold for icons and small highlights (readable on paper) */
-  --tint:    #F7EBCB;   /* soft gold background for selected answers */
+  --tint:    #FDF3D6;   /* soft gold background for selected answers */
   --star:    #F8B800;   /* logo gold, used sparingly */
-  --night:   #071533;   /* dark navy sections */
+  --night:   #071533;   /* only behind the large photo */
+  --sky:     #F0F5FC;   /* light blue sections, from the logo blue */
+  --sky-2:   #E6EEF9;   /* slightly deeper light blue */
 
   --sans:  "Archivo", system-ui, sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
@@ -100,7 +102,7 @@ p  { margin: 0 0 1em; max-width: 66ch; }
 /* ---------- 5. Header and navigation ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 60;
-  background: rgba(243, 241, 235, .9);
+  background: rgba(252, 251, 248, .92);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: border-color .2s;
@@ -480,7 +482,7 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
     display: flex; gap: 10px;
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 55;
     padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-    background: rgba(243, 241, 235, .96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    background: rgba(252, 251, 248, .96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid var(--line);
   }
   .mobile-bar .btn { flex: 1; padding: 14px 12px; font-size: .9375rem; }
@@ -596,3 +598,43 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
   .mega > span, .label-row, .page-hero .lead, .hero-copy, .hero-photo img, .wide-photo img, .hero-photo figcaption, .site-nav > * { animation: none !important; opacity: 1 !important; transform: none !important; clip-path: none !important; }
   [data-parallax] { transform: none !important; }
 }
+
+/* =========================================================
+   26. LIGHT THEME
+   Light blue and white instead of dark navy blocks.
+   ========================================================= */
+.section-mist { background: var(--sky); }
+.section-mist .table-card { background: var(--white); border: 1px solid var(--line); }
+
+.cta-band { background: var(--sky-2); color: var(--text); }
+.cta-band h2 { color: var(--ink); }
+
+.price-card {
+  background: var(--white); color: var(--text);
+  border: 1px solid var(--line); border-top: 4px solid var(--star);
+  box-shadow: 0 18px 40px rgba(29, 53, 102, .08);
+}
+.price-label { color: var(--accent); }
+.price-big { color: var(--ink); }
+.price-card .muted { color: var(--muted); }
+.price-points .icon { color: var(--accent); }
+
+.form, .side-card, .person { border: 1px solid var(--line); }
+.selfcheck { background: var(--white); border: 1px solid var(--line); }
+.section-mist .pill-list li, .section-mist .check-row { background: var(--white); }
+
+.site-footer { background: var(--sky); color: var(--text); border-top: 1px solid var(--line); }
+.site-footer h4 { color: var(--ink); }
+.site-footer a { color: var(--ink); }
+.site-footer a:hover { color: var(--accent); }
+.site-footer .logo { color: var(--ink); }
+.footer-contact .icon { color: var(--accent); }
+.footer-bottom { border-top-color: var(--line); color: var(--muted); }
+.footer-wa, .site-footer a.footer-wa { color: #0E7A3E; }
+.footer-wa .wa-icon { color: #1FA855; }
+.site-footer a.footer-wa:hover { color: #0A5E2F; }
+.social-icon { background: var(--white); border-color: var(--line); color: var(--ink); }
+
+/* the big photo keeps a lighter shade so its white text stays readable */
+.photo-band > img { opacity: .9; }
+.photo-band::after { background: linear-gradient(180deg, rgba(7,21,51,0) 50%, rgba(7,21,51,.55)); }
