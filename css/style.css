@@ -381,6 +381,12 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
   color: #fff; transition: background .2s, border-color .2s, color .2s;
 }
 .social-icon .icon { width: 20px; height: 20px; }
+/* Instagram glyph (file supplied by Northstar), coloured with CSS so it follows hover */
+.ig-glyph {
+  width: 19px; height: 19px; background: currentColor;
+  -webkit-mask: url("../assets/instagram.png") center / contain no-repeat;
+          mask: url("../assets/instagram.png") center / contain no-repeat;
+}
 .site-footer a.social:hover .social-icon { background: var(--star); border-color: var(--star); color: var(--ink); }
 /* Everything WhatsApp is WhatsApp green */
 :root { --wa: #25D366; --wa-d: #1FA855; }
