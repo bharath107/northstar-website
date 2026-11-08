@@ -64,6 +64,74 @@ if (parallax.length && !reduceMotion) {
 }
 
 // ===========================================================
+// 1a. Richer motion: progress bar, counters, card glow and tilt, step line
+// ===========================================================
+// Scroll progress line at the very top
+const bar = document.querySelector(".scroll-progress");
+if (bar) {
+  const setBar = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  };
+  setBar();
+  addEventListener("scroll", setBar, { passive: true });
+  addEventListener("resize", setBar);
+}
+
+// Numbers count up when they appear (e.g. €5,700+)
+const counters = document.querySelectorAll("[data-count]");
+if (counters.length && "IntersectionObserver" in window && !reduceMotion) {
+  const fmt = (n) => n.toLocaleString("en-US");
+  const co = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      const el = en.target, end = +el.dataset.count, pre = el.dataset.prefix || "", suf = el.dataset.suffix || "";
+      const t0 = performance.now(), dur = 1600;
+      const step = (t) => {
+        const k = Math.min((t - t0) / dur, 1), ease = 1 - Math.pow(1 - k, 3);
+        el.textContent = pre + fmt(Math.round(end * ease)) + (k === 1 ? suf : "");
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+      co.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  counters.forEach((el) => co.observe(el));
+}
+
+// The six step line fills with colour when it comes into view
+document.querySelectorAll(".line").forEach((line) => {
+  if (!("IntersectionObserver" in window) || reduceMotion) { line.classList.add("drawn"); return; }
+  const lo = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { line.classList.add("drawn"); lo.disconnect(); }
+  }, { threshold: 0.35 });
+  lo.observe(line);
+});
+
+// Cards: a soft light follows the cursor, and they tilt slightly (mouse only)
+const cards = document.querySelectorAll(".reason, .service, .quote, .person, .stage, .gl-item, .inc-list li, .side-card, .price-card, .pill-list li");
+const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+cards.forEach((card) => {
+  card.classList.add("glow");
+  const tiltable = finePointer && !reduceMotion && !card.matches(".stage, .gl-item, .side-card, .price-card");
+  if (tiltable) card.classList.add("tilt");
+  card.addEventListener("pointermove", (e) => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    card.style.setProperty("--mx", x + "px");
+    card.style.setProperty("--my", y + "px");
+    if (tiltable) {
+      card.style.setProperty("--ry", ((x / r.width) - 0.5) * 6 + "deg");
+      card.style.setProperty("--rx", (0.5 - (y / r.height)) * 6 + "deg");
+    }
+  });
+  card.addEventListener("pointerleave", () => {
+    card.style.setProperty("--rx", "0deg");
+    card.style.setProperty("--ry", "0deg");
+  });
+});
+
+// ===========================================================
 // 1b. "Is Germany right for you?" self check (pathway page)
 // ===========================================================
 const check = document.getElementById("selfcheck");
