@@ -407,18 +407,22 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
 
 @media (max-width: 900px) {
   .nav-toggle { display: inline-flex; }
+  /* Full screen menu: every link and the button fit on one screen, no scrolling.
+     Sizes follow the screen height (dvh = visible height on phones). */
   .site-nav {
-    position: fixed; inset: 72px 0 0 0; z-index: 70;
-    flex-direction: column; align-items: stretch; gap: 0;
-    background: var(--paper); padding: 16px 16px 120px;
+    position: fixed; top: 72px; left: 0; right: 0; z-index: 70;
+    height: calc(100vh - 72px); height: calc(100dvh - 72px);
+    flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0;
+    background: var(--paper);
+    padding: clamp(4px, 2vh, 16px) 16px calc(clamp(12px, 3vh, 28px) + env(safe-area-inset-bottom));
     transform: translateY(-8px); opacity: 0; visibility: hidden;
     transition: opacity .2s, transform .2s, visibility .2s;
-    overflow-y: auto;
+    overflow-y: auto; overscroll-behavior: contain;
   }
   .site-nav.open { opacity: 1; transform: none; visibility: visible; }
   .site-nav a:not(.btn) {
-    font: 850 2.25rem/1 var(--sans); font-stretch: 80%; text-transform: uppercase; letter-spacing: -.02em;
-    padding: 18px 0; border-bottom: 1px solid var(--line);
+    font: 850 clamp(1.25rem, min(9vw, 5vh), 2.25rem)/1 var(--sans); font-stretch: 80%; text-transform: uppercase; letter-spacing: -.02em;
+    padding: clamp(8px, 1.9vh, 18px) 0; border-bottom: 1px solid var(--line);
   }
   .site-nav a:not(.btn)::after { display: none; }
   .site-nav a[aria-current="page"] { color: var(--accent); }
@@ -430,7 +434,8 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
   .site-nav.open > *:nth-child(5) { transition-delay: .16s; }
   .site-nav.open > *:nth-child(6) { transition-delay: .20s; }
   .site-nav.open > *:nth-child(7) { transition-delay: .24s; }
-  .site-nav .nav-cta { margin-top: 24px; padding: 18px; font-size: 1.0625rem; }
+  .site-nav .nav-cta { margin-top: auto; padding: clamp(12px, 2.2vh, 18px); font-size: 1.0625rem; flex: none; }
+  .site-nav a:not(.btn):nth-last-child(2) { margin-bottom: clamp(14px, 3vh, 28px); }
   body.menu-open { overflow: hidden; }
 
   .hero-grid, .salary-wrap, .two-col, .cta-band-inner, .contact-grid, .price-layout, .faq-layout { grid-template-columns: 1fr; }
@@ -481,8 +486,6 @@ figcaption, .hero-photo figcaption { font-size: .75rem; font-weight: 600; letter
   .hero, .page-hero { padding-top: 20px; }
   .statement-text { font-size: clamp(1.75rem, 7vh, 3rem); }
   .photo-band { min-height: 320px; }
-  .site-nav { inset: 72px 0 0 0; }
-  .site-nav a:not(.btn) { font-size: 1.5rem; padding: 12px 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
