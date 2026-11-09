@@ -12,12 +12,14 @@
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#F3F1EB">
+  <meta name="theme-color" content="#F3F9FA">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head><body>
+<div class="bg-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="scroll-progress" aria-hidden="true"></div>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
@@ -45,8 +47,13 @@
 
 <section class="hero">
   <div class="container">
-    <div class="label-row"><span>For Indian doctors</span><span>India → Germany</span><span>Free consultation</span></div>
+    <div class="label-row"><span><span class="pulse-dot" aria-hidden="true"></span>For Indian doctors</span><span>India → Germany</span><span>Free consultation</span></div>
     <h1 class="mega hero-title"><span class="mega-bold">From MBBS</span> <span class="mega-serif">to a doctor</span> <span class="mega-bold">in Germany.</span></h1>
+    <svg class="ecg" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+  <defs><linearGradient id="ecgGrad" x1="0" x2="1"><stop offset="0" stop-color="#12B3A8"/><stop offset="1" stop-color="#3B8DEB"/></linearGradient></defs>
+  <path class="ecg-base" d="M0 100 L60 100 L72 92 L84 100 L100 100 L108 110 L118 22 L128 130 L138 100 L168 100 L186 84 L204 100 L300 100 L360 100 L372 92 L384 100 L400 100 L408 110 L418 22 L428 130 L438 100 L468 100 L486 84 L504 100 L600 100 L660 100 L672 92 L684 100 L700 100 L708 110 L718 22 L728 130 L738 100 L768 100 L786 84 L804 100 L900 100 L960 100 L972 92 L984 100 L1000 100 L1008 110 L1018 22 L1028 130 L1038 100 L1068 100 L1086 84 L1104 100 L1200 100"/>
+  <path class="ecg-pulse" d="M0 100 L60 100 L72 92 L84 100 L100 100 L108 110 L118 22 L128 130 L138 100 L168 100 L186 84 L204 100 L300 100 L360 100 L372 92 L384 100 L400 100 L408 110 L418 22 L428 130 L438 100 L468 100 L486 84 L504 100 L600 100 L660 100 L672 92 L684 100 L700 100 L708 110 L718 22 L728 130 L738 100 L768 100 L786 84 L804 100 L900 100 L960 100 L972 92 L984 100 L1000 100 L1008 110 L1018 22 L1028 130 L1038 100 L1068 100 L1086 84 L1104 100 L1200 100"/>
+</svg>
     <div class="hero-grid">
       <div class="hero-copy">
         <p class="lead">German hospitals need doctors, and they pay you while you train as a specialist. Northstar takes you through every step: German, documents, visa, FSP, Approbation and your first job.</p>
@@ -189,7 +196,7 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <a href="index.html" class="logo logo-light"><img src="assets/logo-mark-light.png" alt="" width="48" height="48"><span>Northstar</span></a>
+      <a href="index.html" class="logo"><img src="assets/logo-mark-128.png" alt="" width="48" height="48"><span>Northstar</span></a>
       <p>Guiding Indian doctors to a medical career in Germany, one clear step at a time.</p>
       <a class="footer-contact footer-wa" href="https://wa.me/919535337607"><svg viewBox="0 0 24 24" aria-hidden="true" class="wa-icon"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg> WhatsApp +91 95353 37607</a>
       <a class="footer-contact" href="mailto:hello@northstargermany.com"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg> hello@northstargermany.com</a>
